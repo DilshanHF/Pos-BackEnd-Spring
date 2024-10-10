@@ -1,6 +1,7 @@
 package lk.ijse.aad67.posbackendspring.entity.impl;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lk.ijse.aad67.posbackendspring.entity.SuperEntity;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "customer")
 public class CustomerEntity implements SuperEntity {
     @Id
+    @GeneratedValue()
     private String id;
     private String name;
     private String address;
