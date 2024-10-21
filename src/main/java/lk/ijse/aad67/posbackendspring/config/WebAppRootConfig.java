@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "lk.ijse.aad67.posbackendspring")
-@EnableJpaRepositories(basePackages = "lk.ijse.aad67.posbackendspring")
+@EnableJpaRepositories(basePackages = "lk.ijse.aad67.posbackendspring.dao")
 @EnableTransactionManagement
 public class WebAppRootConfig {
 
@@ -39,7 +39,7 @@ public class WebAppRootConfig {
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("lk.ijse.aad67.notecollectoraad");
+        factory.setPackagesToScan("lk.ijse.aad67.posbackendspring");
         factory.setDataSource(dataSource());
         return factory;
     }

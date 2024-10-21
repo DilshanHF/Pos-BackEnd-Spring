@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "customer")
 public class CustomerEntity implements SuperEntity {
     @Id
-    @GeneratedValue()
     private String id;
     private String name;
     private String address;

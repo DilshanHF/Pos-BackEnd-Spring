@@ -9,4 +9,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages = "lk.ijse.aad67.posbackendspring")
 @EnableWebMvc
 public class WebAppConfig {
+
 }
