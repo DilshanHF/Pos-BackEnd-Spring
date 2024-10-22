@@ -24,11 +24,10 @@ public class WebAppRootConfig {
     @Bean
     public ModelMapper modelMapper() {return new ModelMapper();}
 
-    @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         var dmds = new DriverManagerDataSource();
         dmds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dmds.setUrl("jdbc:mysql://localhost:3306/posspringdatabase?createDatabaseIfNotExist=true");
+        dmds.setUrl("jdbc:mysql://localhost:3306/possystemspring?createDatabaseIfNotExist=true");
         dmds.setUsername("root");
         dmds.setPassword("Ijse@123");
         return dmds;
