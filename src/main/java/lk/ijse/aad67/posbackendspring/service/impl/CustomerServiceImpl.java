@@ -7,6 +7,7 @@ import lk.ijse.aad67.posbackendspring.dao.CustomerDAO;
 import lk.ijse.aad67.posbackendspring.dto.impl.CustomerDTO;
 import lk.ijse.aad67.posbackendspring.dto.status.CustomerStatus;
 import lk.ijse.aad67.posbackendspring.entity.impl.CustomerEntity;
+import lk.ijse.aad67.posbackendspring.exceptions.CustomerNotFoundException;
 import lk.ijse.aad67.posbackendspring.exceptions.DataPersistException;
 import lk.ijse.aad67.posbackendspring.service.CustomerService;
 import lk.ijse.aad67.posbackendspring.utill.Mapping;
@@ -39,7 +40,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<CustomerDTO> getAllCustomer() {
-        return List.of();
+       List<CustomerEntity> allCustomers = customerDAO.findAll();
+       return mapping.toCustomerDTOList(allCustomers);
     }
 
     @Override
@@ -49,12 +51,23 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String id) {
-
+        if(customerDAO.existsById(id)){
+            customerDAO.deleteById(id);
+        }else {
+            throw new CustomerNotFoundException("Customer not found");
+        }
     }
 
     @Override
     public void updateCustomer(String id, CustomerDTO customerDTO) {
-
+       CustomerEntity customer = customerDAO.getReferenceById(id);
+       if(customer == null){
+           throw new CustomerNotFoundException("Customer not found");
+       }
+       customer.setName(customerDTO.getName());
+       customer.setAddress(customerDTO.getAddress());
+       customer.setContact(customerDTO.getContact());
+       customerDAO.save(customer);
     }
 
     @Override
@@ -77,6 +90,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<CustomerDTO> searchByContact(String value) {
-        return List.of();
+        return null;
     }
 }
