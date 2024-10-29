@@ -24,6 +24,10 @@ public class CustomerController {
     private CustomerService customerService;
     static Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
+    @GetMapping("/nextId")
+    public String nextId(){
+        return customerService.generateCustomerId();
+    }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addCustomer(@RequestBody CustomerDTO customerDTO){
